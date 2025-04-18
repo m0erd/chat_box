@@ -1,5 +1,5 @@
 from django.db import models
-from django.conf import settings  # This is the correct way to refer to the custom user model
+from django.conf import settings
 
 
 class Channel(models.Model):
@@ -30,6 +30,22 @@ class Membership(models.Model):
         return f"{self.user.email} in {self.channel.name}"
 
 
+class Message(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="messages"
+    )
+    channel = models.ForeignKey(
+        Channel,
+        on_delete=models.CASCADE,
+        related_name="messages"
+    )
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.email} to {self.channel.name}: {self.content[:20]}"
 
 # from django.db import models
 # from django.contrib.auth.models import User

@@ -4,8 +4,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import Channel, Membership
-from .serializers import ChannelSerializer
+from .models import Channel, Membership, Message
+from .serializers import ChannelSerializer, MessageSerializer
 from .exceptions import NotFoundError, ValidationError
 from core.utils import error_handler
 
@@ -71,6 +71,55 @@ def my_channels(request):
     channels = [membership.channel for membership in memberships]
     serializer = ChannelSerializer(channels, many=True)
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+@error_handler
+def list_messages(request, channel_id):
+    try:
+        channel = Channel.objects.get(id=channel_id)
+    except Channel.DoesNotExist:
+        return Response({"detail": "Channel not found."}, status=status.HTTP_404_NOT_FOUND)
+
+    messages = Message.objects.filter(channel=channel)
+    serializer = MessageSerializer(messages, many=True)
+
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+@error_handler
+def send_message(request, channel_id):
+    try:
+        channel = Channel.objects.get(pk=channel_id)
+    except Channel.DoesNotExist:
+        raise NotFoundError("Kanal bulunamadı.")
+
+    message = Message.objects.create(
+        user=request.user,
+        channel=channel,
+        content=request.data.get("content")
+    )
+    return Response({"status": "message sent"}, status=status.HTTP_201_CREATED)
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+@error_handler
+def delete_message(request, channel_id, message_id):
+    try:
+        channel = Channel.objects.get(pk=channel_id)
+        message = Message.objects.get(id=message_id, channel=channel)
+    except (Channel.DoesNotExist, Message.DoesNotExist):
+        raise NotFoundError("Kanal veya mesaj bulunamadı.")
+
+    if message.user != request.user:
+        raise ValidationError("Sadece mesajın sahibi mesajı silebilir.")
+
+    message.delete()
+    return Response({"status": "message deleted"}, status=status.HTTP_204_NO_CONTENT)
 
 
 # from rest_framework.decorators import api_view, permission_classes
