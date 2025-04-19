@@ -1,8 +1,12 @@
 import logging
+
+from django.http import HttpResponse
+from django.views.decorators.cache import never_cache
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
+from django.shortcuts import render
 
 from .models import Channel, Membership, Message
 from .serializers import ChannelSerializer, MessageSerializer
@@ -120,3 +124,8 @@ def delete_message(request, channel_id, message_id):
 
     message.delete()
     return Response({"status": "message deleted"}, status=status.HTTP_204_NO_CONTENT)
+
+
+@never_cache
+def test_socket_view(request):
+    return render(request, 'chat/test_socket.html')

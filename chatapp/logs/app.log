@@ -1908,3 +1908,19 @@
 [2025-04-18 17:26:03,357] WARNING django.request - Unauthorized: /api/users/login
 [2025-04-18 17:26:30,022] INFO users.views - Login attempt for username: user2
 [2025-04-18 17:26:30,603] INFO users.views - User user2 logged in successfully.
+[2025-04-19 03:01:44,762] WARNING django.request - Not Found: /
+[2025-04-19 03:01:51,522] WARNING django.request - Not Found: /chat/test/
+[2025-04-19 03:01:54,296] WARNING django.request - Not Found: /chat/test/
+[2025-04-19 03:02:11,768] WARNING django.request - Not Found: /chat/test/
+[2025-04-19 03:02:12,793] WARNING django.request - Not Found: /chat/test/
+[2025-04-19 03:02:19,761] WARNING django.request - Not Found: /chat/test/
+[2025-04-19 03:02:20,622] WARNING django.request - Not Found: /chat/test/
+[2025-04-19 03:02:20,792] WARNING django.request - Not Found: /chat/test/
+[2025-04-19 03:02:20,945] WARNING django.request - Not Found: /chat/test/
+[2025-04-19 03:03:47,632] WARNING django.request - Not Found: /
+[2025-04-19 03:03:55,734] WARNING django.request - Not Found: /chat/test/
+[2025-04-19 03:05:17,964] WARNING django.request - Not Found: /api/chat/test/
+[2025-04-19 03:05:29,650] WARNING django.request - Not Found: /api/chat/test/
+[2025-04-19 03:05:39,399] WARNING django.request - Not Found: /api/chat/test/
+[2025-04-19 03:06:06,567] WARNING django.request - Not Found: /api/chat/test/
+[2025-04-19 03:06:51,218] WARNING django.request - Not Found: /chat/test/

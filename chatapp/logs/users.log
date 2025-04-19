@@ -1,0 +1,6 @@
+[2025-04-19 08:33:37,348] INFO users.views - Login attempt for username: user2
+[2025-04-19 08:33:37,896] INFO users.views - User user2 logged in successfully.
+[2025-04-19 08:51:44,035] INFO users.views - Login attempt for username: user2
+[2025-04-19 08:51:45,076] INFO users.views - User user2 logged in successfully.
+[2025-04-19 08:52:07,884] INFO users.views - Login attempt for username: user2
+[2025-04-19 08:52:09,155] INFO users.views - User user2 logged in successfully.

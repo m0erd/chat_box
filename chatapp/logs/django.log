@@ -1,0 +1,102 @@
+[2025-04-19 03:03:45,726] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-04-19 03:08:17,298] INFO django.utils.autoreload - C:\Users\admin\PycharmProjects\chat_box\chatapp\chat\urls.py changed, reloading.
+[2025-04-19 03:08:18,090] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-04-19 03:30:47,430] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-04-19 03:33:56,842] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-04-19 03:45:47,532] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-04-19 03:48:22,700] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-04-19 03:49:16,272] INFO django.utils.autoreload - C:\Users\admin\PycharmProjects\chat_box\chatapp\chat\urls.py changed, reloading.
+[2025-04-19 03:49:17,031] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-04-19 03:55:54,165] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-04-19 03:57:33,452] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-04-19 03:58:23,086] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-04-19 04:00:56,609] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-04-19 04:02:01,455] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-04-19 04:02:03,249] WARNING django.request - Not Found: /
+[2025-04-19 04:02:03,454] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:07:19,635] INFO django.utils.autoreload - C:\Users\admin\PycharmProjects\chat_box\chatapp\chat\urls.py changed, reloading.
+[2025-04-19 04:07:20,404] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-04-19 04:12:18,952] WARNING django.request - Not Found: /
+[2025-04-19 04:13:54,392] WARNING django.request - Not Found: /
+[2025-04-19 04:15:00,273] WARNING django.request - Not Found: /
+[2025-04-19 04:15:00,393] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:25:38,527] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:33:55,055] WARNING django.request - Not Found: /
+[2025-04-19 04:36:48,664] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:37:11,368] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:37:11,541] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:37:11,698] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:37:14,364] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:41:55,187] WARNING django.request - Not Found: /
+[2025-04-19 04:42:05,902] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:44:55,779] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:46:54,305] WARNING django.request - Not Found: /
+[2025-04-19 04:47:30,393] WARNING django.request - Not Found: /
+[2025-04-19 04:49:28,711] WARNING django.request - Not Found: /
+[2025-04-19 04:49:42,203] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:51:33,312] WARNING django.request - Not Found: /
+[2025-04-19 04:51:42,123] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:55:47,957] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:55:48,657] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:56:02,739] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:56:03,371] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:56:03,567] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:56:03,743] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:56:03,910] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:56:04,053] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:56:04,219] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:56:04,391] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:56:04,600] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:56:04,786] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:56:04,975] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:56:05,138] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:56:05,303] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:56:05,485] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:56:32,399] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:56:32,453] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:56:41,856] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:56:42,362] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:56:42,624] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:56:43,521] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:56:54,336] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:56:54,536] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:56:54,706] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:56:54,886] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:56:55,027] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:56:55,184] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:56:55,369] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:56:55,536] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:56:55,683] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:56:55,850] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:56:56,034] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:56:56,239] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:56:56,409] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:56:56,559] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:56:58,854] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:56:58,904] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:57:00,976] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:57:01,024] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:57:01,183] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:57:01,225] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:57:01,344] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:57:01,393] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:57:01,492] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:57:01,537] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:57:01,644] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:57:01,689] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:57:01,791] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:57:01,838] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:57:01,950] WARNING django.request - Not Found: /api/test/
+[2025-04-19 04:57:02,002] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 04:57:59,348] WARNING django.request - Not Found: /
+[2025-04-19 05:01:59,101] WARNING django.request - Not Found: /
+[2025-04-19 05:01:59,263] WARNING django.request - Not Found: /favicon.ico
+[2025-04-19 05:02:05,175] WARNING django.request - Not Found: /api/chat/test/
+[2025-04-19 05:02:10,340] WARNING django.request - Not Found: /ws/chat/room1/
+[2025-04-19 05:16:05,477] WARNING django.request - Not Found: /ws/chat/room1/
+[2025-04-19 05:17:25,807] WARNING django.request - Not Found: /ws/chat/room1/
+[2025-04-19 05:17:52,813] WARNING django.request - Not Found: /ws/chat/room1/
+[2025-04-19 05:58:36,123] WARNING django.request - Not Found: /
+[2025-04-19 06:21:30,767] WARNING django.request - Not Found: /ws/chat/1/
+[2025-04-19 06:33:59,136] WARNING django.request - Not Found: /api/chat/test/
+[2025-04-19 08:52:16,861] WARNING django.request - Not Found: /api/chat/test/
