@@ -1,0 +1,29 @@
+[2025-05-07 17:30:30,499] INFO chat.views - User user joined channel 'Sample Channel'.
+[2025-05-09 16:41:11,717] WARNING chat.views - Channel creation failed by user user1. Errors: {'creator': [ErrorDetail(string='This field is required.', code='required')]}
+[2025-05-09 16:41:19,577] WARNING chat.views - Channel creation failed by user user1. Errors: {'creator': [ErrorDetail(string='This field is required.', code='required')]}
+[2025-05-09 16:43:43,523] WARNING chat.views - Channel creation failed by user user. Errors: {'name': [ErrorDetail(string='channel with this name already exists.', code='unique')]}
+[2025-05-09 16:44:23,021] INFO chat.views - Channel 'TestChannel' created by user user.
+[2025-05-09 16:46:41,839] WARNING chat.views - Channel creation failed by user user1. Errors: {'creator': [ErrorDetail(string='This field is required.', code='required')]}
+[2025-05-09 16:55:02,925] WARNING chat.views - Channel creation failed by user user. Errors: {'creator': [ErrorDetail(string='This field is required.', code='required')]}
+[2025-05-09 16:55:31,198] WARNING chat.views - Channel creation failed by user user. Errors: {'creator': [ErrorDetail(string='Incorrect type. Expected pk value, received str.', code='incorrect_type')]}
+[2025-05-09 16:55:37,110] INFO chat.views - Channel 'AnotherChannel' created by user user.
+[2025-05-09 16:55:55,250] WARNING chat.views - Channel creation failed by user user. Errors: {'creator': [ErrorDetail(string='Invalid pk "0" - object does not exist.', code='does_not_exist')]}
+[2025-05-09 16:55:59,878] WARNING chat.views - Channel creation failed by user user. Errors: {'creator': [ErrorDetail(string='Invalid pk "9" - object does not exist.', code='does_not_exist')]}
+[2025-05-09 16:56:03,285] INFO chat.views - Channel 'channelZ' created by user user.
+[2025-05-09 17:08:18,685] WARNING chat.views - Channel creation failed by user user1. Errors: {'creator': [ErrorDetail(string='This field is required.', code='required')]}
+[2025-05-09 17:10:18,339] INFO chat.views - Channel 'test' created by user user1.
+[2025-05-09 17:10:59,217] INFO chat.views - Channel '111' created by user user1.
+[2025-05-09 17:18:18,228] INFO chat.views - Channel '1234' created by user user1.
+[2025-05-09 18:25:32,626] INFO chat.views - Channel 'chan' created by user user1.
+[2025-05-10 03:42:04,208] INFO chat.views - Channel 'aChannel' created by user user1.
+[2025-05-10 03:58:30,171] INFO chat.views - Channel '999' created by user user1.
+[2025-05-10 05:54:44,832] INFO chat.views - User user1 joined channel 'test'.
+[2025-05-10 05:55:06,495] INFO chat.views - User user1 joined channel 'Sample Channel'.
+[2025-05-11 06:10:00,106] INFO chat.views - User user1 joined channel 'AnotherChannel'.
+[2025-05-11 06:10:12,069] INFO chat.views - User user1 joined channel 'AnotherChannel'.
+[2025-05-11 06:20:38,847] INFO chat.views - User user1 joined channel 'AnotherChannel'.
+[2025-05-11 15:34:18,149] INFO chat.views - Channel 'Good recipes' created by user user1.
+[2025-05-11 17:03:19,960] INFO chat.views - User user1 joined channel 'Sample Channel'.
+[2025-05-11 17:50:09,555] INFO chat.views - Channel 'NewChannel' created by user user1.
+[2025-05-11 17:54:20,886] INFO chat.views - Channel 'aaa' created by user user1.
+[2025-05-11 17:55:38,735] INFO chat.views - Channel 'bbb' created by user user1.

@@ -1,38 +1,34 @@
-import os
-import jwt
 from urllib.parse import parse_qs
-
-from channels.middleware import BaseMiddleware
-from channels.db import database_sync_to_async
 from django.contrib.auth.models import AnonymousUser
-from users.models import CustomUser
-from jwt.exceptions import ExpiredSignatureError, InvalidTokenError
+from channels.middleware import BaseMiddleware
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from django.contrib.auth import get_user_model
+from channels.db import database_sync_to_async
 
-
-SECRET_KEY = os.getenv('SECRET_KEY')
-
+User = get_user_model()
 
 @database_sync_to_async
-def get_user(user_id):
+def get_user(validated_token):
     try:
-        return CustomUser.objects.get(id=user_id)
-    except CustomUser.DoesNotExist:
-        return None
+        return JWTAuthentication().get_user(validated_token)
+    except:
+        return AnonymousUser()
 
-
-class TokenAuthMiddleware(BaseMiddleware):
+class JWTAuthMiddleware(BaseMiddleware):
     async def __call__(self, scope, receive, send):
+        # Extract token from query string: ?token=xyz
         query_string = parse_qs(scope["query_string"].decode())
         token = query_string.get("token", [None])[0]
 
         if token is None:
             scope["user"] = AnonymousUser()
-        else:
-            try:
-                payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
-                user = await get_user(payload.get("user_id"))
-                scope["user"] = user or AnonymousUser()
-            except (ExpiredSignatureError, InvalidTokenError):
-                scope["user"] = AnonymousUser()
+            return await super().__call__(scope, receive, send)
+
+        try:
+            validated_token = JWTAuthentication().get_validated_token(token)
+            scope["user"] = await get_user(validated_token)
+        except Exception as e:
+            print("JWT validation failed:", e)
+            scope["user"] = AnonymousUser()
 
         return await super().__call__(scope, receive, send)

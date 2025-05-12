@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application</title>
+    <!-- Include Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <style>
+        /* Custom Navbar Style */
+        .navbar-custom {
+            background-color: #004085; /* Dark Blue */
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-nav .nav-link {
+            color: white;
+        }
+
+        .navbar-custom .navbar-nav .nav-link:hover {
+            color: #d4d4d4;
+        }
+
+        /* Sidebar and Chat Layout */
+        .sidebar {
+            height: 100vh; /* Make sure the sidebar stretches from top to bottom */
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+
+        .chat-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .chat-panel {
+            flex-grow: 1;
+            border-left: 1px solid #ddd;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .message-input {
+            margin-top: 20px;
+            position: sticky;
+            bottom: 0;
+            background-color: #fff;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .message-list {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">ChatApp</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'my_channels' %}">My Channels</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'create_channel' %}">Create Channel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Chat Container -->
+    <div class="chat-container">
+        <!-- Sidebar (Left Block) -->
+        <div class="col-md-3 sidebar">
+            <h4>Channels</h4>
+            <ul class="list-group">
+                <!-- Dynamic List of Channels from Backend -->
+                <li class="list-group-item">
+                    <a href="#">General</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#">Tech Talk</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#">Random</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Chat Panel (Right Block) -->
+        <div class="chat-panel col-md-9">
+            <h3>Channel Name</h3>
+            <div class="message-list" id="messages-list">
+                <!-- Messages will appear here dynamically via JS -->
+            </div>
+
+            <div class="message-input">
+                <input type="text" class="form-control" id="message-input" placeholder="Type your message..." autocomplete="off">
+                <button id="send-message" class="btn btn-primary w-100 mt-2">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- WebSocket Connection and Chat Logic -->
+    <script>
+        const chatChannelName = 'general'; // Change to the channel you're working with
+
+        // Establish WebSocket connection
+        const socket = new WebSocket(`ws://${window.location.host}/ws/chat/${chatChannelName}/`);
+
+        socket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            const message = data.message;
+
+            // Append new message to the chat panel
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.textContent = message;
+            document.getElementById('messages-list').appendChild(messageElement);
+        };
+
+        // Send message on button click
+        document.getElementById('send-message').onclick = function() {
+            const messageInput = document.getElementById('message-input');
+            const message = messageInput.value.trim();
+
+            if (message) {
+                socket.send(JSON.stringify({ message: message }));
+                messageInput.value = ''; // Clear input field
+            }
+        };
+
+        // Send message when "Enter" is pressed
+        document.getElementById('message-input').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                document.getElementById('send-message').click();
+            }
+        });
+    </script>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

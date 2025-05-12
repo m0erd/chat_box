@@ -1,13 +1,13 @@
 from rest_framework import serializers
 from .models import Channel, Membership
-from django.contrib.auth.models import User
 from .models import Message
 
 
 class ChannelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Channel
-        fields = ['id', 'name', 'created_at', 'creator']
+        # fields = ['id', 'name', 'created_at', 'creator']
+        fields = ['id', 'name', 'created_at']
 
 
 class MembershipSerializer(serializers.ModelSerializer):

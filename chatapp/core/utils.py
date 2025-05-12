@@ -16,7 +16,7 @@ def error_handler(view_func):
             )
         except Exception as e:
             return Response(
-                {"error": "Beklenmedik bir şeyler ters gitti, lütfen tekrar deneyin(500)."},
+                {"error": "Something went wrong, please try again(500)."},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 

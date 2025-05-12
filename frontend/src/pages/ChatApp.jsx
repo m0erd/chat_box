@@ -1,0 +1,169 @@
+import React, { useEffect, useState, useRef } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+
+const apiLogin = async (username, password) => {
+  return {
+    data: { token: "access_token" },
+  };
+};
+
+const isTokenExpired = (token) => {
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    return payload.exp < Date.now() / 1000;
+  } catch (err) {
+    console.error("Invalid token format:", err);
+    return true;
+  }
+};
+
+function ChatApp() {
+  const { channelId } = useParams();
+  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
+  const [channelName, setChannelName] = useState("");
+  const websocketRef = useRef(null);
+  const navigate = useNavigate();
+
+  const hasConnectedRef = useRef(false);
+
+  const refreshAccessToken = async () => {
+    const refresh = localStorage.getItem("refresh_token");
+    if (!refresh) return null;
+
+    try {
+      const response = await fetch("http://localhost:8001/api/token/refresh/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ refresh }),
+      });
+
+      if (!response.ok) throw new Error("Token refresh failed");
+
+      const data = await response.json();
+      localStorage.setItem("access_token", data.access);
+      return data.access;
+    } catch (err) {
+      console.error("Token refresh error:", err);
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    const fetchChannelName = async () => {
+      try {
+        const response = await fetch(`http://localhost:8001/api/channels/${channelId}/`, {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("access_token")}`
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setChannelName(data.channel_name);
+        } else {
+          console.error("Failed to fetch channel name");
+        }
+      } catch (err) {
+        console.error("Error fetching channel name:", err);
+      }
+    };
+
+    fetchChannelName();
+
+    const setupWebSocket = async () => {
+      const isPublic = ["general", "tech-talk", "random"].includes(channelId);
+      let token = localStorage.getItem("access_token");
+
+      if (!isPublic) {
+        if (!token || isTokenExpired(token)) {
+          token = await refreshAccessToken();
+          if (!token) {
+            navigate("/login");
+            return;
+          }
+        }
+      }
+
+      const url = isPublic
+        ? `ws://localhost:8001/ws/chat/${channelId}/`
+        : `ws://localhost:8001/ws/chat/${channelId}/?token=${token}`;
+
+      console.log("Connecting to WebSocket at:", url);
+      const ws = new WebSocket(url);
+      websocketRef.current = ws;
+
+      ws.onopen = () => console.log("✅ WebSocket connected");
+      ws.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          const { message, username } = data;
+          setMessages((prev) => [...prev, { username, message }]);
+        } catch (err) {
+          console.error("Parse error:", err);
+        }
+      };
+      
+      ws.onerror = (err) => console.error("❌ WebSocket error:", err);
+      ws.onclose = () => console.log("🔌 WebSocket closed");
+    };
+
+    setupWebSocket();
+
+    return () => {
+      if (websocketRef.current) {
+        websocketRef.current.close();
+        websocketRef.current = null;
+        console.log("🔁 Cleaned up previous WebSocket");
+      }
+    };
+  }, [channelId, navigate]);
+
+  const sendMessage = () => {
+    if (!message.trim()) return;
+
+    if (websocketRef.current && websocketRef.current.readyState === WebSocket.OPEN) {
+      websocketRef.current.send(JSON.stringify({ message }));
+      setMessage("");
+    } else {
+      console.error("WebSocket is not open.");
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      sendMessage();
+    }
+  };
+
+  return (
+    <div className="chat-panel p-3">
+      <h3 className="channel-name">{channelName || channelId}</h3>
+
+      <div className="chat-messages border p-2 mb-3" style={{ height: "400px", overflowY: "scroll" }}>
+        {messages.map((msg, index) => (
+          <div key={index} className="message">
+            <strong>{msg.username || "Anonymous"}:</strong> {msg.message}
+          </div>
+        ))}
+      </div>
+
+      <div className="input-group">
+        <input
+          type="text"
+          className="form-control"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="Type a message..."
+        />
+        <button className="btn btn-primary" onClick={sendMessage}>
+          Send
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default ChatApp;

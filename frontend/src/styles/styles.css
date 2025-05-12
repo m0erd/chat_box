@@ -1,0 +1,85 @@
+.navbar-custom {
+  background-color: #004085;
+  margin-bottom: 20px;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-nav .nav-link {
+  color: white;
+}
+
+.navbar-custom .navbar-nav .nav-link:hover {
+  color: #d4d4d4;
+}
+
+.sidebar {
+  height: calc(100vh - 56px);
+  background-color: #f8f9fa;
+  padding-top: 20px;
+  margin: 0;
+  width: 25%;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  overflow-y: hidden;
+}
+
+.chat-container {
+  margin-left: 25%;
+  margin-top: 56px;
+  height: calc(100vh - 56px);
+  display: flex;
+  padding-left: 20px;
+}
+
+.chat-panel {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #fff;
+  overflow-y: auto;
+  margin-left: 20px;
+  border-left: 1px solid #ddd;
+}
+
+.message-input {
+  position: sticky;
+  bottom: 0;
+  background-color: #fff;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  z-index: 10;
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.message-list {
+  max-height: 70vh;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.message {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #f1f1f1;
+}
+
+.message:hover {
+  background-color: #e9ecef;
+}
+
+.sidebar .list-group-item {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar .list-group-item:hover {
+  background-color: #dcdcdc;
+}
+
+.sidebar .list-group {
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+  padding-right: 10px;
+}
