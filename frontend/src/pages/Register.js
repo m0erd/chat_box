@@ -1,126 +1,120 @@
-// import React, { useState } from "react";
-// import axios from "axios";
-// import { useNavigate } from "react-router-dom";
-
-// function Register({ setUserAuthenticated }) {
-//   const [formData, setFormData] = useState({
-//     username: "",
-//     email: "",
-//     password: ""
-//   });
-
-//   const navigate = useNavigate();
-
-//   const handleChange = (e) => {
-//     setFormData(prev => ({
-//       ...prev,
-//       [e.target.name]: e.target.value
-//     }));
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const res = await axios.post("http://127.0.0.1:8001/api/users/register/", formData);
-//       console.log("Registration successful:", res.data);
-//       setUserAuthenticated(true);
-//       navigate("/"); // Redirect to chat or home page
-//     } catch (err) {
-//       console.error("Registration error:", err.response?.data || err.message);
-//       alert("Registration failed. Please check your inputs.");
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h2>Register</h2>
-//       <form onSubmit={handleSubmit}>
-//         <input type="text" name="username" placeholder="Username" onChange={handleChange} required />
-//         <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
-//         <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
-//         <button type="submit">Register</button>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default Register;
-import React, { useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Register({ setUserAuthenticated }) {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: ""
-  });
-
+export default function Register({ setUser }) {
   const navigate = useNavigate();
 
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    email: "",
+  });
+
+  const [error, setError] = useState("");
+
   const handleChange = (e) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+
     try {
-      const res = await axios.post("http://127.0.0.1:8001/api/users/register/", formData);
-      console.log("Registration successful:", res.data);
-      setUserAuthenticated(true);
-      navigate("/"); // Redirect to chat or home page
+      const response = await fetch("http://localhost:8001/api/users/register/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.detail || "Registration failed");
+        return;
+      }
+
+      // Save tokens
+      localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("refresh_token", data.refresh_token);
+
+      // Fetch user info
+      const userResponse = await fetch("http://localhost:8001/api/users/detail/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${data.access_token}`,
+        },
+      });
+
+      if (!userResponse.ok) {
+        setError("Failed to retrieve user info.");
+        return;
+      }
+
+      const userData = await userResponse.json();
+      setUser(userData); // Set user in context
+
+      navigate("/"); // Redirect to homepage
     } catch (err) {
-      console.error("Registration error:", err.response?.data || err.message);
-      alert("Registration failed. Please check your inputs.");
+      console.error("Registration error:", err);
+      setError("An unexpected error occurred.");
     }
   };
 
   return (
     <div className="container mt-5 d-flex justify-content-center">
-      <div className="card p-4 shadow" style={{ width: "100%", maxWidth: "400px" }}>
-        <h3 className="text-center mb-4">Register</h3>
+      <div className="card p-4 shadow" style={{ maxWidth: "400px", width: "100%" }}>
+        <h2 className="text-center mb-4">Register</h2>
+        {error && <div className="alert alert-danger">{error}</div>}
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
+            <label htmlFor="username" className="form-label">Username</label>
             <input
               type="text"
               className="form-control"
+              id="username"
               name="username"
-              placeholder="Username"
               value={formData.username}
               onChange={handleChange}
               required
             />
           </div>
+
           <div className="mb-3">
+            <label htmlFor="email" className="form-label">Email</label>
             <input
               type="email"
               className="form-control"
+              id="email"
               name="email"
-              placeholder="Email"
               value={formData.email}
               onChange={handleChange}
               required
             />
           </div>
-          <div className="mb-4">
+
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">Password</label>
             <input
               type="password"
               className="form-control"
+              id="password"
               name="password"
-              placeholder="Password"
               value={formData.password}
               onChange={handleChange}
               required
             />
           </div>
+
           <button type="submit" className="btn btn-primary w-100">Register</button>
         </form>
       </div>
     </div>
   );
 }
-
-export default Register;

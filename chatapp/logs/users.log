@@ -811,3 +811,26 @@
 [2025-05-12 05:37:07,868] INFO users.views - Login attempt for username: user1
 [2025-05-12 05:37:08,583] INFO users.views - User user1 logged in successfully.
 [2025-05-12 05:37:45,745] INFO users.views - Login attempt for username: user1
+[2025-05-12 14:17:23,744] INFO users.views - Login attempt for username: user
+[2025-05-12 14:17:24,493] INFO users.views - User user logged in successfully.
+[2025-05-12 15:26:58,711] INFO users.views - Login attempt for username: user1
+[2025-05-12 15:26:59,552] INFO users.views - User user1 logged in successfully.
+[2025-05-12 15:30:00,217] INFO users.views - User someone registered successfully.
+[2025-05-12 15:35:35,645] INFO users.views - User useruser registered successfully.
+[2025-05-12 15:38:57,179] INFO users.views - User useruser2 registered successfully.
+[2025-05-12 15:41:48,713] ERROR users.views - User registration failed. Errors: {'username': [ErrorDetail(string='A user with that username already exists.', code='unique')]}
+[2025-05-12 15:41:59,798] INFO users.views - User user12 registered successfully.
+[2025-05-12 15:45:50,376] INFO users.views - User user13 registered successfully.
+[2025-05-12 15:47:09,782] ERROR users.views - User registration failed. Errors: {'email': [ErrorDetail(string='user with this email already exists.', code='unique')]}
+[2025-05-12 15:47:21,508] INFO users.views - User 3 registered successfully.
+[2025-05-12 15:49:42,025] INFO users.views - User 44 registered successfully.
+[2025-05-12 15:52:52,268] ERROR users.views - User registration failed. Errors: {'username': [ErrorDetail(string='A user with that username already exists.', code='unique')], 'email': [ErrorDetail(string='This field is required.', code='required')]}
+[2025-05-12 15:53:50,200] ERROR users.views - User registration failed. Errors: {'username': [ErrorDetail(string='A user with that username already exists.', code='unique')]}
+[2025-05-12 15:53:56,206] INFO users.views - User user14 registered successfully.
+[2025-05-12 16:00:41,623] INFO users.views - User ohno registered successfully.
+[2025-05-12 16:01:35,428] INFO users.views - User reg registered successfully.
+[2025-05-12 16:04:25,110] INFO users.views - User again registered successfully.
+[2025-05-12 16:06:19,353] INFO users.views - User logic registered successfully.
+[2025-05-12 16:06:19,397] ERROR users.views - User registration failed. Errors: {'username': [ErrorDetail(string='A user with that username already exists.', code='unique')], 'email': [ErrorDetail(string='user with this email already exists.', code='unique')]}
+[2025-05-12 16:06:39,082] INFO users.views - User log registered successfully.
+[2025-05-12 16:06:54,870] INFO users.views - User last registered successfully.

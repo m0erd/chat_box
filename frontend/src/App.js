@@ -70,10 +70,10 @@ function AppHeader() {
   );
 }
 
-
 function AppLayoutWrapper() {
   const { user } = useAuth();
   const [channels, setChannels] = useState([]);
+  const [projectInfo, setProjectInfo] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
@@ -97,6 +97,11 @@ function AppLayoutWrapper() {
       .catch((err) => {
         console.error("Channel fetch error:", err);
       });
+
+    fetch("/project_description.txt")
+      .then((res) => res.text())
+      .then((text) => setProjectInfo(text))
+      .catch((err) => console.error("Failed to load project description:", err));
   }, []);
 
   const navigate = useNavigate();
@@ -128,13 +133,15 @@ function AppLayoutWrapper() {
         </ul>
       </div>
       <div className="col-md-9 chat-panel">
-        <p>Select a public channel to start chatting.</p>
+        <iframe
+          src="/about.html"
+          title="About Chat App"
+          style={{ width: "100%", height: "500px", border: "none" }}
+        ></iframe>
       </div>
     </div>
   );
 }
-
-
 
 function App() {
   const { user, setUser } = useAuth();
@@ -165,7 +172,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<Register setUser={setUser} />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<AppLayoutWrapper />} />
@@ -179,3 +186,5 @@ function App() {
 }
 
 export default App;
+
+

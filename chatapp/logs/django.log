@@ -9169,3 +9169,19 @@ django.urls.exceptions.NoReverseMatch: Reverse for 'logout' not found. 'logout' 
 [2025-05-12 05:35:20,563] ERROR django.request - Internal Server Error: /api/users/login/
 [2025-05-12 05:36:15,600] ERROR django.request - Internal Server Error: /api/users/login/
 [2025-05-12 05:37:48,458] ERROR django.request - Internal Server Error: /api/users/login/
+[2025-05-12 15:41:48,731] WARNING django.request - Bad Request: /api/users/register/
+[2025-05-12 15:47:09,798] WARNING django.request - Bad Request: /api/users/register/
+[2025-05-12 15:52:52,273] WARNING django.request - Bad Request: /api/users/register/
+[2025-05-12 15:53:50,200] WARNING django.request - Bad Request: /api/users/register/
+[2025-05-12 15:56:06,099] WARNING django.request - Method Not Allowed: /api/users/logout/
+[2025-05-12 16:06:06,128] WARNING django.request - Method Not Allowed: /api/users/logout/
+[2025-05-12 16:06:19,416] WARNING django.request - Bad Request: /api/users/register/
+[2025-05-12 16:06:44,420] WARNING django.request - Method Not Allowed: /api/users/logout/
+[2025-05-12 16:35:54,356] WARNING django.request - Unauthorized: /api/channels/
+[2025-05-12 16:35:54,394] WARNING django.request - Unauthorized: /api/channels/
+[2025-05-12 16:35:59,428] WARNING django.request - Unauthorized: /api/users/detail/
+[2025-05-12 16:35:59,430] WARNING django.request - Unauthorized: /api/channels/
+[2025-05-12 16:35:59,464] WARNING django.request - Unauthorized: /api/users/detail/
+[2025-05-12 16:35:59,465] WARNING django.request - Unauthorized: /api/channels/
+[2025-05-12 16:35:59,536] WARNING django.request - Unauthorized: /api/users/detail/
+[2025-05-12 16:35:59,672] WARNING django.request - Unauthorized: /api/users/detail/

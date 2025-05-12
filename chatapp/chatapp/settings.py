@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import dj_database_url
 import logging.config
 from django.conf.global_settings import STATICFILES_DIRS
 from dotenv import load_dotenv
@@ -18,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
@@ -129,25 +130,12 @@ WSGI_APPLICATION = "chatapp.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('DB_NAME'),
-#         'USER': os.getenv('DB_USER'),
-#         'PASSWORD': os.getenv('DB_PASSWORD'),
-#         'HOST': os.getenv('DB_HOST'),
-#         'PORT': os.getenv('DB_PORT'),
-#     }
-# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "chatdb",
-        'USER': "postgres",
-        'PASSWORD': "pass",
-        'HOST': "db",
-        'PORT': "5432",
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
 
 AUTH_USER_MODEL = 'users.CustomUser'
@@ -205,7 +193,8 @@ SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
-LOG_LEVEL = 'INFO'  # or WARNING / ERROR in prod
+# LOG_LEVEL = 'INFO'  # or WARNING / ERROR in prod
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
 
 LOGGING = {
     'version': 1,
@@ -277,17 +266,18 @@ LOGGING = {
     },
 }
 
-STATICFILES_DIRS = [
-    "C:\\Users\\admin\\PycharmProjects\\chat_box\\frontend\\build\\static",  # Path to React's static files
-]
 # STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'frontend/build/static'),  # This is where React's build outputs static files
+#     "C:\\Users\\admin\\PycharmProjects\\chat_box\\frontend\\build\\static",
 # ]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'frontend/build/static'),
+]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "https://domain.up.railway.app",
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_ALL_ORIGINS = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

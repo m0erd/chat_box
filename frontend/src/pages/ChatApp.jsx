@@ -24,6 +24,7 @@ function ChatApp() {
   const [channelName, setChannelName] = useState("");
   const websocketRef = useRef(null);
   const navigate = useNavigate();
+  const messagesEndRef = useRef(null);
 
   const hasConnectedRef = useRef(false);
 
@@ -120,6 +121,12 @@ function ChatApp() {
     };
   }, [channelId, navigate]);
 
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
   const sendMessage = () => {
     if (!message.trim()) return;
 
@@ -147,6 +154,7 @@ function ChatApp() {
             <strong>{msg.username || "Anonymous"}:</strong> {msg.message}
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </div>
 
       <div className="input-group">

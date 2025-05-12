@@ -1,0 +1,61 @@
+<!-- public/about.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About The Application</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    h2 {
+      margin-top: 2rem;
+      color: #2c3e50;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    .emoji {
+      font-size: 1.2rem;
+      margin-right: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>🚀 Real-Time Chat Application with Django</h1>
+  <p>This project showcases a highly engineered real-time chat system built using Django, Django Channels, and PostgreSQL, emphasizing modern backend architecture, asynchronous communication, and robust security practices.</p>
+
+  <p>At its core, the application delivers a production-ready WebSocket infrastructure that allows users to create and join custom chat channels, exchange messages instantly, and securely authenticate via a JWT-based token system.</p>
+
+  <h2>🧠 Core Engineering Highlights</h2>
+  <ul>
+    <li><span class="emoji">⚙️</span><strong>Scalable Architecture:</strong> Modular Django design, layered service structure, and reusable components ensure clean separation of concerns and future-proofing.</li>
+    <li><span class="emoji">🔄</span><strong>Asynchronous Real-Time Messaging:</strong> Django Channels enable full-duplex WebSocket communication for high-performance messaging.</li>
+    <li><span class="emoji">🔐</span><strong>JWT-Based Authentication:</strong> Secure token-based login with access and refresh tokens.</li>
+    <li><span class="emoji">🛡️</span><strong>Centralized Error Handling:</strong> Consistent and meaningful HTTP responses for all exception cases.</li>
+    <li><span class="emoji">🧾</span><strong>Persistent Chat Storage:</strong> PostgreSQL database for structured message history and metadata.</li>
+    <li><span class="emoji">📡</span><strong>WebSocket Security Layer:</strong> Token-based connection validation for all real-time interactions.</li>
+    <li><span class="emoji">📊</span><strong>Comprehensive Logging System:</strong> Includes log levels and error tracing for production debugging.</li>
+    <li><span class="emoji">🐳</span><strong>Deployment Ready:</strong> Docker-based local and cloud deployment.</li>
+  </ul>
+
+  <h2>🔧 Tech Stack</h2>
+  <p><strong>Django, RESTful API, PostgreSQL, Channels, Redis, Docker & React</strong></p>
+
+  <h2>🚀 Deployment</h2>
+  <p><strong>Railway</strong> (previously AWS — switched due to cost).</p>
+
+  <h2>⚠️ Note</h2>
+  <p>Message persistence was partially disabled to accommodate free-tier database limitations during deployment.</p>
+</body>
+</html>
