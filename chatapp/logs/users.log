@@ -834,3 +834,5 @@
 [2025-05-12 16:06:19,397] ERROR users.views - User registration failed. Errors: {'username': [ErrorDetail(string='A user with that username already exists.', code='unique')], 'email': [ErrorDetail(string='user with this email already exists.', code='unique')]}
 [2025-05-12 16:06:39,082] INFO users.views - User log registered successfully.
 [2025-05-12 16:06:54,870] INFO users.views - User last registered successfully.
+[2025-05-13 03:58:01,228] INFO users.views - Login attempt for username: user1
+[2025-05-13 03:58:04,324] WARNING users.views - Login failed for username: user1
