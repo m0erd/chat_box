@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -14,7 +16,7 @@ const Login = () => {
     setError("");
 
     try {
-      const response = await fetch("http://127.0.0.1:8001/api/users/login/", {
+      const response = await fetch(`${backendUrl}/api/users/login/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),

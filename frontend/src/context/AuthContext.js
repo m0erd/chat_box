@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -17,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     if (!refreshToken) return null;
   
     try {
-      const res = await fetch("http://localhost:8001/api/token/refresh/", {
+      const res = await fetch(`${backendUrl}/api/token/refresh/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ refresh: refreshToken }),
@@ -40,7 +41,7 @@ export const AuthProvider = ({ children }) => {
       let accessToken = localStorage.getItem("access_token");
       if (!accessToken) return;
   
-      let res = await fetch("http://localhost:8001/api/users/detail/", {
+      let res = await fetch(`${backendUrl}/api/users/detail/`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
   
@@ -48,7 +49,7 @@ export const AuthProvider = ({ children }) => {
         accessToken = await refreshAccessToken();
         if (!accessToken) return;
   
-        res = await fetch("http://localhost:8001/api/users/detail/", {
+        res = await fetch(`${backendUrl}/api/users/detail/`, {
           headers: { Authorization: `Bearer ${accessToken}` },
         });
       }
@@ -76,7 +77,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('access_token', token);
       setUser({ user_id: decoded.user_id });
 
-      fetch("http://localhost:8001/api/users/detail/", {
+      fetch(`${backendUrl}/api/users/detail/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -103,7 +104,7 @@ export const AuthProvider = ({ children }) => {
 
     try {
       if (refreshToken) {
-        await fetch("http://localhost:8001/api/users/logout/", {
+        await fetch(`${backendUrl}/api/users/logout/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

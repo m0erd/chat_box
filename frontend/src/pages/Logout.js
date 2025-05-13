@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
 const Logout = ({ setUserAuthenticated }) => {
   const [logoutMessage, setLogoutMessage] = useState("");
 
@@ -12,7 +14,7 @@ const Logout = ({ setUserAuthenticated }) => {
     }
 
     try {
-      const response = await fetch("http://127.0.0.1:8001/api/users/logout/", {
+      const response = await fetch(`${backendUrl}/api/users/logout/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -23,7 +25,6 @@ const Logout = ({ setUserAuthenticated }) => {
       const data = await response.json();
 
       if (response.ok) {
-        // Clear tokens from localStorage
         localStorage.removeItem("access_token");
         localStorage.removeItem("refresh_token");
 

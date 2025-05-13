@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
 export default function Register({ setUser }) {
   const navigate = useNavigate();
 
@@ -24,7 +26,7 @@ export default function Register({ setUser }) {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:8001/api/users/register/", {
+      const response = await fetch(`${backendUrl}/api/users/register/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,12 +41,10 @@ export default function Register({ setUser }) {
         return;
       }
 
-      // Save tokens
       localStorage.setItem("access_token", data.access_token);
       localStorage.setItem("refresh_token", data.refresh_token);
 
-      // Fetch user info
-      const userResponse = await fetch("http://localhost:8001/api/users/detail/", {
+      const userResponse = await fetch(`${backendUrl}/api/users/detail/`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -58,9 +58,9 @@ export default function Register({ setUser }) {
       }
 
       const userData = await userResponse.json();
-      setUser(userData); // Set user in context
+      setUser(userData);
 
-      navigate("/"); // Redirect to homepage
+      navigate("/");
     } catch (err) {
       console.error("Registration error:", err);
       setError("An unexpected error occurred.");

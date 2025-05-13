@@ -6,7 +6,6 @@ function CreateChatRoom() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Creating room:", name);
-    // TODO: Send request to backend to create chatroom
   };
 
   return (

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
 const CreateChannel = () => {
   const { user } = useAuth();
   const [channelName, setChannelName] = useState('');
@@ -18,7 +20,7 @@ const CreateChannel = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:8001/api/channels/create/', {
+      const response = await fetch(`${backendUrl}/api/channels/create/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

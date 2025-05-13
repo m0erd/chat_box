@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
 const apiLogin = async (username, password) => {
   return {
     data: { token: "access_token" },
@@ -33,7 +35,7 @@ function ChatApp() {
     if (!refresh) return null;
 
     try {
-      const response = await fetch("http://localhost:8001/api/token/refresh/", {
+      const response = await fetch(`${backendUrl}/api/token/refresh/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ refresh }),
@@ -53,7 +55,7 @@ function ChatApp() {
   useEffect(() => {
     const fetchChannelName = async () => {
       try {
-        const response = await fetch(`http://localhost:8001/api/channels/${channelId}/`, {
+        const response = await fetch(`${backendUrl}/api/channels/${channelId}/`, {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${localStorage.getItem("access_token")}`
@@ -88,8 +90,8 @@ function ChatApp() {
       }
 
       const url = isPublic
-        ? `ws://localhost:8001/ws/chat/${channelId}/`
-        : `ws://localhost:8001/ws/chat/${channelId}/?token=${token}`;
+        ? `${backendUrl}/ws/chat/${channelId}/`
+        : `${backendUrl}/ws/chat/${channelId}/?token=${token}`;
 
       console.log("Connecting to WebSocket at:", url);
       const ws = new WebSocket(url);

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
 const MyChannels = () => {
   const accessToken = localStorage.getItem("access_token");
   const [channels, setChannels] = useState([]);
@@ -9,7 +11,7 @@ const MyChannels = () => {
   useEffect(() => {
     const fetchChannels = async () => {
       try {
-        const res = await fetch("http://localhost:8001/api/channels/my/", {
+        const res = await fetch(`${backendUrl}/api/channels/my/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },

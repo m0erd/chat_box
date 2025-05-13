@@ -74,11 +74,12 @@ function AppLayoutWrapper() {
   const { user } = useAuth();
   const [channels, setChannels] = useState([]);
   const [projectInfo, setProjectInfo] = useState("");
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
 
-    fetch("http://localhost:8001/api/channels/", {
+    fetch(`${backendUrl}/api/channels/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -149,7 +150,7 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (token && !user) {
-      fetch("http://localhost:8001/api/users/detail/", {
+      fetch(`${backendUrl}/api/users/detail/`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
