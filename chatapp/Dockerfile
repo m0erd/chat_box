@@ -55,4 +55,4 @@ ENV DATABASE_URL=${DATABASE_URL}
 ENV REDIS_URL=${REDIS_URL}
 ENV DEBUG=${DEBUG}
 
-CMD ["uvicorn", "chatapp.asgi:application", "--host", "0.0.0.0", "--port", "8001"]
+CMD ["sh", "-c", "uvicorn chatapp.asgi:application --host 0.0.0.0 --port $PORT"]
