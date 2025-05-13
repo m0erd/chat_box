@@ -19,6 +19,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./styles/styles.css";
 
+
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
+
 function AppHeader() {
   const { user, logoutUser } = useAuth();
   const navigate = useNavigate();
