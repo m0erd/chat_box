@@ -19,7 +19,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', "backend-production-ae99.up.railway.app/"]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', "backend-production-ae99.up.railway.app"]
 
 # Application definition
 
@@ -270,7 +270,7 @@ LOGGING = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://domain.up.railway.app",
+    "https://backend-production-ae99.up.railway.app",
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
