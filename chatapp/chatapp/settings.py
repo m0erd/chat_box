@@ -1,8 +1,6 @@
 from pathlib import Path
 import os
 import dj_database_url
-import logging.config
-from django.conf.global_settings import STATICFILES_DIRS
 from dotenv import load_dotenv
 from datetime import timedelta
 
@@ -266,13 +264,13 @@ LOGGING = {
     },
 }
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend/build/static'),
-]
+# STATICFILES_DIRS = [
+#     os.path.join('frontend/build/static'),
+# ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://domain.up.railway.app",
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'chatapp/staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
