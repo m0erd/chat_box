@@ -266,9 +266,6 @@ LOGGING = {
     },
 }
 
-# STATICFILES_DIRS = [
-#     "C:\\Users\\admin\\PycharmProjects\\chat_box\\frontend\\build\\static",
-# ]
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'frontend/build/static'),
 ]
@@ -278,6 +275,4 @@ CORS_ALLOWED_ORIGINS = [
     "https://domain.up.railway.app",
 ]
 
-# CORS_ALLOW_ALL_ORIGINS = True
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'chatapp/staticfiles')
