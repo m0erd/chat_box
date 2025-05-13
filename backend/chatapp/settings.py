@@ -19,7 +19,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', "backend-production-ae99.up.railway.app"]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', "backend-production-bea1.up.railway.app"]
 
 # Application definition
 
