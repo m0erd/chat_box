@@ -44,18 +44,19 @@ INSTALLED_APPS = [
 
 ASGI_APPLICATION = 'chatapp.asgi.application'
 
-# CHANNEL_LAYERS = {
-#     "default": {
-#         "BACKEND": "channels.layers.InMemoryChannelLayer"
-#     },
-# }
 CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('redis', 6379)],
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [
+                (
+                    os.environ.get("REDISHOST", "localhost"),
+                    int(os.environ.get("REDISPORT", 6379)),
+                    {"password": os.environ.get("REDIS_PASSWORD", None)},
+                )
+            ]
         },
-    },
+    }
 }
 # CHANNEL_LAYERS = {
 #     "default": {
