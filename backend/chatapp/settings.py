@@ -44,19 +44,24 @@ INSTALLED_APPS = [
 
 ASGI_APPLICATION = 'chatapp.asgi.application'
 
+REDIS_HOST = os.environ.get("REDISHOST", "127.0.0.1")
+REDIS_PORT = os.environ.get("REDISPORT", "6379")
+REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD", "")
+
+REDIS_PORT = int(REDIS_PORT) if REDIS_PORT else 6379
+
+if REDIS_PASSWORD:
+    REDIS_URL = f"redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}"
+else:
+    REDIS_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}"
+
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [
-                (
-                    os.environ.get("REDISHOST", "localhost"),
-                    int(os.environ.get("REDISPORT", 6379)),
-                    {"password": os.environ.get("REDIS_PASSWORD", None)},
-                )
-            ]
+            "hosts": [REDIS_URL],
         },
-    }
+    },
 }
 # CHANNEL_LAYERS = {
 #     "default": {
@@ -185,7 +190,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
