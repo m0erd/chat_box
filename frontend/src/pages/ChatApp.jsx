@@ -90,15 +90,15 @@ function ChatApp() {
       }
 
       const url = isPublic
-        ? `${backendUrl}/ws/chat/${channelId}/`
-        : `${backendUrl}/ws/chat/${channelId}/?token=${token}`;
+        ? `${backendUrl}/wss/chat/${channelId}/`
+        : `${backendUrl}/wss/chat/${channelId}/?token=${token}`;
 
       console.log("Connecting to WebSocket at:", url);
-      const ws = new WebSocket(url);
-      websocketRef.current = ws;
+      const wss = new WebSocket(url);
+      websocketRef.current = wss;
 
-      ws.onopen = () => console.log("✅ WebSocket connected");
-      ws.onmessage = (event) => {
+      wss.onopen = () => console.log("✅ WebSocket connected");
+      wss.onmessage = (event) => {
         try {
           const data = JSON.parse(event.data);
           const { message, username } = data;
@@ -108,8 +108,8 @@ function ChatApp() {
         }
       };
       
-      ws.onerror = (err) => console.error("❌ WebSocket error:", err);
-      ws.onclose = () => console.log("🔌 WebSocket closed");
+      wss.onerror = (err) => console.error("❌ WebSocket error:", err);
+      wss.onclose = () => console.log("🔌 WebSocket closed");
     };
 
     setupWebSocket();
