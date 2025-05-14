@@ -18,7 +18,7 @@ import { useAuth } from "./context/AuthContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./styles/styles.css";
-
+import AppInfo from './AppInfo';
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -138,11 +138,15 @@ function AppLayoutWrapper() {
         </ul>
       </div>
       <div className="col-md-9 chat-panel">
-        <iframe
+        {/* <iframe
           src="/app_info.html"
           title="About Chat App"
           style={{ width: "100%", height: "500px", border: "none" }}
-        ></iframe>
+        ></iframe> */}
+        <section>
+          <h1>About the Chat App</h1>
+          <AppInfo />
+        </section>
       </div>
     </div>
   );
