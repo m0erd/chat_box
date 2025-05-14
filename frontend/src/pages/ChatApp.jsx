@@ -75,6 +75,12 @@ function ChatApp() {
 
     fetchChannelName();
 
+    const buildWebSocketURL = (httpUrl, path) => {
+      const wsScheme = httpUrl.startsWith("https") ? "wss" : "ws";
+      const cleanBackendUrl = httpUrl.replace(/^https?:\/\//, "");
+      return `${wsScheme}://${cleanBackendUrl}${path}`;
+    };
+
     const setupWebSocket = async () => {
       const isPublic = ["general", "tech-talk", "random"].includes(channelId);
       let token = localStorage.getItem("access_token");
@@ -89,9 +95,11 @@ function ChatApp() {
         }
       }
 
-      const url = isPublic
-        ? `${backendUrl}/wss/chat/${channelId}/`
-        : `${backendUrl}/wss/chat/${channelId}/?token=${token}`;
+      const wsPath = isPublic
+        ? `/ws/chat/${channelId}/`
+        : `/ws/chat/${channelId}/?token=${token}`;
+
+      const url = buildWebSocketURL(backendUrl, wsPath);
 
       console.log("Connecting to WebSocket at:", url);
       const wss = new WebSocket(url);
