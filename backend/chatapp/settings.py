@@ -270,7 +270,8 @@ LOGGING = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "backend-production-bea1.up.railway.app",
+    "https://backend-production-bea1.up.railway.app/",
+    "https://frontend-production-7a9d.up.railway.app/",
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
