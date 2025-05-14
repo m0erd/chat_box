@@ -18,7 +18,6 @@ import { useAuth } from "./context/AuthContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./styles/styles.css";
-import AppInfo from './AppInfo';
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -121,35 +120,70 @@ function AppLayoutWrapper() {
   };
 
   return (
-    <div className="chat-container row">
-      <div className="col-md-3 sidebar">
-        <h4>Channels</h4>
-        <ul className="list-group">
-          {channels.map((channel) => (
-            <li key={channel.id} className="list-group-item">
-              <button
-                className="btn btn-link"
-                onClick={() => handleChannelClick(channel.id)}
-              >
-                {channel.name}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="col-md-9 chat-panel">
-        {/* <iframe
-          src="/app_info.html"
-          title="About Chat App"
-          style={{ width: "100%", height: "500px", border: "none" }}
-        ></iframe> */}
-        <section>
-          <h1>About the Chat App</h1>
-          <AppInfo />
-        </section>
-      </div>
-    </div>
-  );
+  <div className="chat-container row">
+    <aside className="col-md-3 sidebar">
+      <h4>Channels</h4>
+      <ul className="list-group">
+        {channels.map((channel) => (
+          <li key={channel.id} className="list-group-item">
+            <button
+              className="btn btn-link p-0 text-start"
+              onClick={() => handleChannelClick(channel.id)}
+              aria-label={`Join ${channel.name} channel`}
+            >
+              {channel.name}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </aside>
+
+    <main
+      className="col-md-9 chat-panel"
+      style={{
+        padding: "2rem",
+        backgroundColor: "#fff",
+        fontFamily: "Arial, sans-serif",
+        lineHeight: 1.6,
+      }}
+    >
+      <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>
+        🚀 Real-Time Chat Application with Django
+      </h1>
+      <p>
+        This project showcases a highly engineered real-time chat system built using Django, Django Channels, and PostgreSQL,
+        emphasizing modern backend architecture, asynchronous communication, and robust security practices.
+      </p>
+
+      <p>
+        At its core, the application delivers a production-ready WebSocket infrastructure that allows users to create and join
+        custom chat channels, exchange messages instantly, and securely authenticate via a JWT-based token system.
+      </p>
+
+      <h2 style={{ marginTop: "2rem", color: "#2c3e50" }}>🧠 Core Engineering Highlights</h2>
+      <ul style={{ paddingLeft: "1.2rem" }}>
+        <li><span style={{ fontSize: "1.2rem", marginRight: "0.4rem" }}>⚙️</span><strong>Scalable Architecture:</strong> Modular Django design, layered service structure, and reusable components ensure clean separation of concerns and future-proofing.</li>
+        <li><span style={{ fontSize: "1.2rem", marginRight: "0.4rem" }}>🔄</span><strong>Asynchronous Real-Time Messaging:</strong> Django Channels enable full-duplex WebSocket communication for high-performance messaging.</li>
+        <li><span style={{ fontSize: "1.2rem", marginRight: "0.4rem" }}>🔐</span><strong>JWT-Based Authentication:</strong> Secure token-based login with access and refresh tokens.</li>
+        <li><span style={{ fontSize: "1.2rem", marginRight: "0.4rem" }}>🛡️</span><strong>Centralized Error Handling:</strong> Consistent and meaningful HTTP responses for all exception cases.</li>
+        <li><span style={{ fontSize: "1.2rem", marginRight: "0.4rem" }}>🧾</span><strong>Persistent Chat Storage:</strong> PostgreSQL database for structured message history and metadata.</li>
+        <li><span style={{ fontSize: "1.2rem", marginRight: "0.4rem" }}>📡</span><strong>WebSocket Security Layer:</strong> Token-based connection validation for all real-time interactions.</li>
+        <li><span style={{ fontSize: "1.2rem", marginRight: "0.4rem" }}>📊</span><strong>Comprehensive Logging System:</strong> Includes log levels and error tracing for production debugging.</li>
+        <li><span style={{ fontSize: "1.2rem", marginRight: "0.4rem" }}>🐳</span><strong>Deployment Ready:</strong> Docker-based local and cloud deployment.</li>
+      </ul>
+
+      <h2 style={{ marginTop: "2rem", color: "#2c3e50" }}>🔧 Tech Stack</h2>
+      <p><strong>Django, RESTful API, PostgreSQL, Channels, Redis, Docker & React</strong></p>
+
+      <h2 style={{ marginTop: "2rem", color: "#2c3e50" }}>🚀 Deployment</h2>
+      <p><strong>Railway</strong> (previously AWS — switched due to cost).</p>
+
+      <h2 style={{ marginTop: "2rem", color: "#2c3e50" }}>⚠️ Note</h2>
+      <p>Message persistence was partially disabled to accommodate free-tier database limitations during deployment.</p>
+    </main>
+  </div>
+);
+
 }
 
 function App() {
