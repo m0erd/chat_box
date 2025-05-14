@@ -139,7 +139,7 @@ function AppLayoutWrapper() {
       </div>
       <div className="col-md-9 chat-panel">
         <iframe
-          src="/about.html"
+          src="/app_info.html"
           title="About Chat App"
           style={{ width: "100%", height: "500px", border: "none" }}
         ></iframe>
