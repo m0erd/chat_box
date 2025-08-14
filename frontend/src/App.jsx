@@ -23,7 +23,7 @@ const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 
 function AppHeader() {
-  const { user, logoutUser } = useAuth();
+  const { user, setUser, logoutUser } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
