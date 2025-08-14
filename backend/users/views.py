@@ -99,15 +99,14 @@ def login_user(request):
         }, status=status.HTTP_401_UNAUTHORIZED)
 
 
-@api_view(['GET'])
+@api_view(['POST'])
 @error_handler
 def logout_user(request):
     refresh_token = request.data.get("refresh_token")
+    if not refresh_token:
+        return Response({"error": "Refresh token is required"}, status=status.HTTP_400_BAD_REQUEST)
 
     try:
-        if not refresh_token:
-            return Response({"error": "Refresh token is required"}, status=status.HTTP_400_BAD_REQUEST)
-
         token = RefreshToken(refresh_token)
         token.blacklist()
 

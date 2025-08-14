@@ -15,4 +15,3 @@ const axiosWithAuth = () => {
 };
 
 export { axiosInstance, axiosWithAuth };
-

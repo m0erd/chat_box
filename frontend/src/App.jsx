@@ -26,11 +26,24 @@ function AppHeader() {
   const { user, logoutUser } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logoutUser();
+  const handleLogout = async () => {
+    const refreshToken = localStorage.getItem("refresh_token");
+
+    if (refreshToken) {
+      await fetch(`${backendUrl}/api/logout/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ refresh_token: refreshToken }),
+      });
+    }
+
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    setUser(null);
     navigate("/");
-    window.location.reload();
-  };
+};
 
   return (
     <nav className="navbar navbar-expand-lg navbar-custom">
@@ -147,6 +160,24 @@ function AppLayoutWrapper() {
         lineHeight: 1.6,
       }}
     >
+      <h2 style={{ marginBottom: "1rem", color: "#2c3e50" }}>🛠 Explore the Project</h2>
+      <p>
+        Check out the real-time chat functionality by logging in with these demo accounts (or you can crate):
+        <br />
+        <strong>username:</strong> user, <strong>password:</strong> pass
+        <br />
+        <strong>username:</strong> user2, <strong>password:</strong> pass
+      </p>
+      <p>
+        Use separate browsers (e.g., Chrome and Opera) to log in with different accounts and see messages update live in the same channel.
+      </p>
+      <p>
+        Developers can explore the codebase and architecture here:{" "}
+        <a href="https://github.com/m0erd/chat_box/" target="_blank" rel="noopener noreferrer">
+          GitHub Repository
+        </a>
+      </p>
+
       <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>
         🚀 Real-Time Chat Application with Django
       </h1>
@@ -173,7 +204,7 @@ function AppLayoutWrapper() {
       </ul>
 
       <h2 style={{ marginTop: "2rem", color: "#2c3e50" }}>🔧 Tech Stack</h2>
-      <p><strong>Django, RESTful API, PostgreSQL, Channels, Redis, Docker & React</strong></p>
+      <p><strong>Django, Django Rest Framework(RESTful API), PostgreSQL, Channels, Redis, Docker & React</strong></p>
 
       <h2 style={{ marginTop: "2rem", color: "#2c3e50" }}>🚀 Deployment</h2>
       <p><strong>Railway</strong> (previously AWS — switched due to cost).</p>
@@ -229,5 +260,3 @@ function App() {
 }
 
 export default App;
-
-

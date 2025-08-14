@@ -13,23 +13,19 @@
 }
 
 .sidebar {
-  height: calc(100vh - 56px);
   background-color: #f8f9fa;
   padding-top: 20px;
   margin: 0;
   width: 25%;
-  position: fixed;
-  top: 56px;
-  left: 0;
-  overflow-y: hidden;
+  height: 100%;
+  position: relative;
+  overflow-y: auto;
 }
 
 .chat-container {
-  margin-left: 25%;
+  display: flex;
   margin-top: 56px;
   height: calc(100vh - 56px);
-  display: flex;
-  padding-left: 20px;
 }
 
 .chat-panel {
@@ -37,9 +33,9 @@
   padding: 20px;
   background-color: #fff;
   overflow-y: auto;
-  margin-left: 20px;
   border-left: 1px solid #ddd;
 }
+
 
 .message-input {
   position: sticky;
@@ -79,7 +75,6 @@
 }
 
 .sidebar .list-group {
-  height: calc(100vh - 80px);
   overflow-y: auto;
   padding-right: 10px;
 }
