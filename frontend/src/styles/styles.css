@@ -14,28 +14,30 @@
 
 .sidebar {
   background-color: #f8f9fa;
-  padding-top: 20px;
-  margin: 0;
-  width: 25%;
-  height: 100%;
-  position: relative;
-  overflow-y: auto;
-}
-
-.chat-container {
-  display: flex;
-  margin-top: 56px;
-  height: calc(100vh - 56px);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-right: 1rem;
 }
 
 .chat-panel {
-  flex-grow: 1;
-  padding: 20px;
-  background-color: #fff;
-  overflow-y: auto;
-  border-left: 1px solid #ddd;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
+.chat-container {
+  gap: 1rem;
+}
+
+h2, h1 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+ul.list-group li {
+  margin-bottom: 0.5rem;
+}
 
 .message-input {
   position: sticky;
