@@ -17,6 +17,7 @@
   padding: 1rem;
   border-radius: 0.5rem;
   margin-right: 1rem;
+  flex: 0 0 250px;
 }
 
 .chat-panel {
@@ -24,10 +25,13 @@
   background-color: #ffffff;
   border-radius: 0.5rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  flex: 1;
 }
 
 .chat-container {
+  display: flex;
   gap: 1rem;
+  align-items: flex-start;
 }
 
 h2, h1 {
